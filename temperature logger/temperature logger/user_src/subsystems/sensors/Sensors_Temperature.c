@@ -14,10 +14,14 @@ sensor operating states
 */
 enum sensors_status_t {
   SENSORS_TEMPERATURE_OK = 0,
-  SENSORS_TEMPERATURE_FAULTY,
-  SENSORS_TEMPERATURE_ERRATIC,
-  SENSORS_TEMPERATURE_STATE_NUM_MAX
+  SENSORS_TEMPERATURE_FAULTY = -1,
+  SENSORS_TEMPERATURE_ERRATIC = -2,
 };
+
+/*
+populate the structure for the intended configuration value
+*/
+static TMP117_configuration_register_t configuration = {};
 
 /*
 structure to hold the state of the sensor
@@ -53,4 +57,27 @@ void Sensors_Temperature_ports_initialize(void) {
     _this.sensors[i].initialized =
         TMP117_device_id_status_get(_this.sensors[i].address);
   }
+}
+
+/**
+ * @brief configures all the sensors
+ *
+ * @return 0 success, <0 if one or more sensors failed to configure
+ */
+int Sensors_Temperature_configure(void) {
+  int err = 0;
+  for (size_t i = 0; i < sizeof(_this.sensors) / sizeof(_this.sensors[0]);
+       i++) {
+    if (!_this.sensors[i].initialized)
+      continue;
+
+    err = TMP117_configure(_this.sensors[i].address, configuration.value);
+    if (err) { // check for errors
+      _this.status = SENSORS_TEMPERATURE_FAULTY;
+      // somethings not right, sensor could be unreliable, set it to false so we
+      // attempt reading from it
+      _this.sensors[i].initialized = false;
+    }
+  }
+  return _this.status;
 }
