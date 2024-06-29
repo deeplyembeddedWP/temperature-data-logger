@@ -4,6 +4,7 @@
  * Created: 29/06/2024 6:15:10 pm
  * Author: Vinay Divakar
  * Brief: subsystem to interact with an array of temperature sensors
+ * Dependencies: TMP117, delay drivers
  */
 
 #include "Sensors_Temperature.h"

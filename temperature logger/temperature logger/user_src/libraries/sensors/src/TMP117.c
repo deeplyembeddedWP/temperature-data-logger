@@ -4,6 +4,7 @@
  * Created: 29/06/2024 1:43:06 pm
  * Author: Vinay Divakar
  * Brief: minimal lib to interact with the sensor
+ * Dependencies: I2C, UART stdio drivers
  */
 #include "TMP117.h"
 
