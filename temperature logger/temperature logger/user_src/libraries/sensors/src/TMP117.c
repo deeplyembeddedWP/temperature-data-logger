@@ -86,24 +86,24 @@ int TMP117_configure(int16_t slave_addr, uint16_t config_value) {
  * @brief retrieves device id from the sensor
  *
  * @param[in] slave_addr slave address to read from
- * @return device id success, ERR_INVALID_DATA on error
+ * @return true on success/valid, false on error/invalid
  */
-uint16_t TMP117_device_id_get(int16_t slave_addr) {
+bool TMP117_device_id_status_get(int16_t slave_addr) {
   uint16_t id = _register_read(slave_addr, TMP117_ID_REGISTER_ADDRESS);
   if (id == UINT16_MAX || id != TMP117_DEVICE_ID_VALUE_EXPECTED) { // verify id
-    return ERR_INVALID_DATA;
+    return false;
   }
 
-  return id;
+  return true;
 }
 
 /**
  * @brief retrieves data ready status
  *
  * @param[in] slave_addr slave address to read from
- * @return true on ready, false on not ready, ERR_INVALID_DATA on error
+ * @return 1 on ready, 0 on not ready, ERR_INVALID_DATA on error
  */
-bool TMP117_data_ready_status_get(int16_t slave_addr) {
+int TMP117_data_ready_status_get(int16_t slave_addr) {
   uint16_t data_ready =
       _register_read(slave_addr, TMP117_CONFIG_REGISTER_ADDRESS);
   if (data_ready == UINT16_MAX) {

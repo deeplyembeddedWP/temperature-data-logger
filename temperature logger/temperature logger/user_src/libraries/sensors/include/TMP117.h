@@ -19,6 +19,13 @@
 #define TMP117_ADDRESS_2 0x4A // ADD0 connected to SDA
 #define TMP117_ADDRESS_3 0x4B // ADD0 connected to SCL
 
+// device take 1.5 ms to power up, on a safer side, use 5 ms
+#define TMP117_POWER_ON_TIME_MS 5
+// single cycle takes 15.5 ms, on a safer side, use 20 ms
+#define TMP117_CONVERSION_TIME_ONE_CYCLE_MS 20
+#define TMP117_CONVERSION_TIME_EIGHT_CYCLES_MS                                 \
+  (8 * TMP117_CONVERSION_TIME_ONE_CYCLE_MS)
+
 // Configuration register found on page 25 Figure 26 and Table 6
 typedef union {
   struct {
@@ -46,5 +53,10 @@ typedef union {
   } device_id_fields;
   uint16_t device_id_register;
 } TMP117_device_id_register_t;
+
+int TMP117_configure(int16_t slave_addr, uint16_t config_value);
+bool TMP117_device_id_status_get(int16_t slave_addr);
+int TMP117_data_ready_status_get(int16_t slave_addr);
+float TMP117_temperature_celcius_get(int16_t slave_addr);
 
 #endif /* TMP117_H_ */
