@@ -72,3 +72,7 @@ stdio_redirect\stdio_io.c
 
 stdio_start.c
 
+user_src\drivers\src\I2C.c
+
+user_src\libraries\sensors\src\TMP117.c
+

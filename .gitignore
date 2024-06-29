@@ -50,3 +50,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+temperature logger/temperature logger/Debug/temperature logger.srec
