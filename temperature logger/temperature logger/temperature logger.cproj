@@ -20,10 +20,10 @@
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress />
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue />
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <BootSegment>2</BootSegment>
     <ResetRule>0</ResetRule>
     <eraseonlaunchrule>0</eraseonlaunchrule>
@@ -343,6 +343,8 @@
       <Value>../hri</Value>
       <Value>../stdio_redirect</Value>
       <Value>%24(PackRepoDir)\atmel\SAME54_DFP\1.1.134\include</Value>
+      <Value>../user_src/drivers/include</Value>
+      <Value>../user_src/libraries/sensors/include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
@@ -362,6 +364,7 @@
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
+  <armgcc.linker.memorysettings.ExternalRAM />
   <armgcc.linker.miscellaneous.LinkerFlags>-Tsame54p20a_flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
@@ -845,6 +848,18 @@
     <Compile Include="stdio_start.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="user_src\drivers\include\I2C.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\drivers\src\I2C.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\sensors\include\TMP117.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\sensors\src\TMP117.c">
+      <SubType>compile</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
@@ -872,8 +887,21 @@
     <Folder Include="hpl\sercom\" />
     <Folder Include="hpl\systick\" />
     <Folder Include="hri\" />
+    <Folder Include="user_src" />
     <Folder Include="stdio_redirect\" />
     <Folder Include="stdio_redirect\gcc\" />
+    <Folder Include="user_src\docs\images" />
+    <Folder Include="user_src\drivers" />
+    <Folder Include="user_src\drivers\include" />
+    <Folder Include="user_src\drivers\src" />
+    <Folder Include="user_src\libraries" />
+    <Folder Include="user_src\libraries\packetizers" />
+    <Folder Include="user_src\libraries\packetizers\include" />
+    <Folder Include="user_src\libraries\packetizers\src" />
+    <Folder Include="user_src\libraries\sensors" />
+    <Folder Include="user_src\libraries\sensors\include" />
+    <Folder Include="user_src\libraries\sensors\src" />
+    <Folder Include="user_src\docs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Device_Startup\same54p20a_flash.ld">
@@ -889,6 +917,9 @@
       <SubType>compile</SubType>
     </None>
     <None Include="hal\documentation\usart_sync.rst">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="user_src\docs\images\sensor-node-hlbd.png">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
