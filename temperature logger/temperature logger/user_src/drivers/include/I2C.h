@@ -9,6 +9,8 @@
 #ifndef I2C_H_
 #define I2C_H_
 
+#include <stdint.h>
+
 int I2C_begin(void);
 int I2C_master_write(int16_t addr, uint8_t reg, uint8_t *buffer,
                      uint8_t buffer_size);
