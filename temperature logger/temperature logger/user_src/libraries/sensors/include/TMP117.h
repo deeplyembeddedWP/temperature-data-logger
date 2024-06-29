@@ -42,7 +42,7 @@ typedef union {
     uint8_t low_alert : 1;   // Low Alert flag
     uint8_t high_alert : 1;  // High Alert flag
   } configuration_feilds;
-  uint16_t configuration_register;
+  uint16_t value;
 } TMP117_configuration_register_t;
 
 // Device ID Register used for checking if the device ID is the same as declared
