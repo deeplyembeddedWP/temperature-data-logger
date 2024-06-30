@@ -42,3 +42,5 @@ An application that does the following
 - This will make integration easier for external hosts considering there's massive support for processing JSON data.
 
 ## Software Architecture 
+![software-stack](https://github.com/deeplyembeddedWP/temperature-data-logger/assets/23131959/f26e7f37-03c8-4d09-ac1a-86ac1b8c1574)
+
