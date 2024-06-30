@@ -12,10 +12,6 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-struct packet_type_t {
-	char name[32];
-};
-
 struct packet_param_t {
 	char name[32];
 	uint32_t timestamp;
@@ -31,7 +27,7 @@ struct packet_param_t {
 
 
 struct packet_t {
-	struct packet_type_t type;
+	char type[32];
 	struct packet_param_t param;
 };
 

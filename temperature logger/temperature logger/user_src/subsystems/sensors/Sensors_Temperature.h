@@ -23,8 +23,8 @@ sensor operating states
 enum sensors_status_t {
 	SENSORS_TEMPERATURE_OK = 0,
 	SENSORS_TEMPERATURE_CONFIG_ERROR = -1,
-	SENSORS_TEMPERATURE_FAULTY = -1,
-	SENSORS_TEMPERATURE_ERRATIC = -2,
+	SENSORS_TEMPERATURE_FAULTY = -2,
+	SENSORS_TEMPERATURE_ERRATIC = -3,
 };
 
 void Sensors_Temperature_initialize(void);

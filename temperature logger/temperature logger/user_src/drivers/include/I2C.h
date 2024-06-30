@@ -11,7 +11,7 @@
 
 #include <stdint.h>
 
-int I2C_begin(void);
+int I2C_initialize(void);
 int I2C_master_write(int16_t addr, uint8_t reg, uint8_t *buffer,
                      uint8_t buffer_size);
 int I2C_master_read(int16_t addr, uint8_t reg, uint8_t *buffer,

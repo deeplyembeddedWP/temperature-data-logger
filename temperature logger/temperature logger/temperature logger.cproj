@@ -350,6 +350,7 @@
       <Value>../user_src/application/src</Value>
       <Value>../user_src/subsystems/sensors</Value>
       <Value>../user_src/subsystems/sys_status</Value>
+      <Value>../user_src/subsystems/packetizers</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>

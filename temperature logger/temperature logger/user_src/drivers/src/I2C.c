@@ -26,7 +26,7 @@ static void _slave_address_select(int16_t addr) {
  *
  * @return 0 success, <0 error
  */
-int I2C_begin(void) {
+int I2C_initialize(void) {
   int err = i2c_m_sync_enable(&I2C_Sercom_3);
   ASSERT(!err);
 

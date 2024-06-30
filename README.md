@@ -47,7 +47,7 @@ An application that does the following
 2. **_Drivers_**: It uses the HAL APIs to expose the features of the controller to the user while abstracting the complex intricacies of the peripherals.
 3. **_Libraries_**: It uses the driver APIs to interact with external devices and expose the external device functions/features to the application. 
 4. **_Subsystems_**: It uses the libraries to build functional blocks. It abstracts all the complexities providing access to simplified interface/APIs to develop the business logic. In certain cases, these are also termed middleware.
-5. **_Application**: It uses the subsystems ' APIs to build the solution that meets the requirements.
+5. **_Application_**: It uses the subsystems ' APIs to build the solution that meets the requirements.
 
 ### Project Structure
 ```bash
