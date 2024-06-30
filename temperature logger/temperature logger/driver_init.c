@@ -15,6 +15,8 @@ struct usart_sync_descriptor UART_Sercom_2;
 
 struct i2c_m_sync_desc I2C_Sercom_3;
 
+struct wdt_descriptor WDT_0;
+
 void UART_Sercom_2_PORT_init(void)
 {
 
@@ -82,6 +84,17 @@ void delay_driver_init(void)
 	delay_init(SysTick);
 }
 
+void WDT_0_CLOCK_init(void)
+{
+	hri_mclk_set_APBAMASK_WDT_bit(MCLK);
+}
+
+void WDT_0_init(void)
+{
+	WDT_0_CLOCK_init();
+	wdt_init(&WDT_0, WDT);
+}
+
 void system_init(void)
 {
 	init_mcu();
@@ -91,4 +104,6 @@ void system_init(void)
 	I2C_Sercom_3_init();
 
 	delay_driver_init();
+
+	WDT_0_init();
 }

@@ -30,6 +30,8 @@ hal\src\hal_sleep.c
 
 hal\src\hal_usart_sync.c
 
+hal\src\hal_wdt.c
+
 hal\utils\src\utils_assert.c
 
 hal\utils\src\utils_event.c
@@ -62,6 +64,8 @@ hpl\sercom\hpl_sercom.c
 
 hpl\systick\hpl_systick.c
 
+hpl\wdt\hpl_wdt.c
+
 main.c
 
 stdio_redirect\gcc\read.c
@@ -76,13 +80,15 @@ user_src\application\Data_Logger.c
 
 user_src\drivers\src\I2C.c
 
+user_src\drivers\src\WDT.c
+
 user_src\libraries\RGB_LED.c
 
 user_src\libraries\TMP117.c
 
 user_src\subsystems\packetizers\Json_Serial.c
 
-user_src\subsystems\power_management\battery.c
+user_src\subsystems\power_management\Battery.c
 
 user_src\subsystems\sensors\Sensors_Temperature.c
 

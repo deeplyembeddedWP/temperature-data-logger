@@ -27,9 +27,13 @@ extern "C" {
 
 #include <hal_delay.h>
 
+#include <hal_wdt.h>
+
 extern struct usart_sync_descriptor UART_Sercom_2;
 
 extern struct i2c_m_sync_desc I2C_Sercom_3;
+
+extern struct wdt_descriptor WDT_0;
 
 void UART_Sercom_2_PORT_init(void);
 void UART_Sercom_2_CLOCK_init(void);
@@ -40,6 +44,9 @@ void I2C_Sercom_3_init(void);
 void I2C_Sercom_3_PORT_init(void);
 
 void delay_driver_init(void);
+
+void WDT_0_CLOCK_init(void);
+void WDT_0_init(void);
 
 /**
  * \brief Perform system initialization, initialize pins and clocks for

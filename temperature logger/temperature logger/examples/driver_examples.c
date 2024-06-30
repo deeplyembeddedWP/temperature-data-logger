@@ -36,3 +36,17 @@ void delay_example(void)
 {
 	delay_ms(5000);
 }
+
+/**
+ * Example of using WDT_0.
+ */
+void WDT_0_example(void)
+{
+	uint32_t clk_rate;
+	uint16_t timeout_period;
+
+	clk_rate       = 1000;
+	timeout_period = 4096;
+	wdt_set_timeout_period(&WDT_0, clk_rate, timeout_period);
+	wdt_enable(&WDT_0);
+}
