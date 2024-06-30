@@ -114,7 +114,7 @@ C_SRCS +=  \
 ../stdio_start.c \
 ../user_src/application/Data_Logger.c \
 ../user_src/drivers/src/I2C.c \
-../user_src/libraries/LED_RGB.c \
+../user_src/libraries/RGB_LED.c \
 ../user_src/libraries/TMP117.c \
 ../user_src/subsystems/packetizers/Json_Serial.c \
 ../user_src/subsystems/power_management/battery.c \
@@ -166,7 +166,7 @@ stdio_redirect/stdio_io.o \
 stdio_start.o \
 user_src/application/Data_Logger.o \
 user_src/drivers/src/I2C.o \
-user_src/libraries/LED_RGB.o \
+user_src/libraries/RGB_LED.o \
 user_src/libraries/TMP117.o \
 user_src/subsystems/packetizers/Json_Serial.o \
 user_src/subsystems/power_management/battery.o \
@@ -211,7 +211,7 @@ stdio_redirect/stdio_io.o \
 stdio_start.o \
 user_src/application/Data_Logger.o \
 user_src/drivers/src/I2C.o \
-user_src/libraries/LED_RGB.o \
+user_src/libraries/RGB_LED.o \
 user_src/libraries/TMP117.o \
 user_src/subsystems/packetizers/Json_Serial.o \
 user_src/subsystems/power_management/battery.o \
@@ -256,7 +256,7 @@ stdio_redirect/stdio_io.d \
 stdio_start.d \
 user_src/application/Data_Logger.d \
 user_src/drivers/src/I2C.d \
-user_src/libraries/LED_RGB.d \
+user_src/libraries/RGB_LED.d \
 user_src/libraries/TMP117.d \
 user_src/subsystems/packetizers/Json_Serial.d \
 user_src/subsystems/power_management/battery.d \
@@ -301,7 +301,7 @@ stdio_redirect/stdio_io.d \
 stdio_start.d \
 user_src/application/Data_Logger.d \
 user_src/drivers/src/I2C.d \
-user_src/libraries/LED_RGB.d \
+user_src/libraries/RGB_LED.d \
 user_src/libraries/TMP117.d \
 user_src/subsystems/packetizers/Json_Serial.d \
 user_src/subsystems/power_management/battery.d \
@@ -583,7 +583,7 @@ user_src/drivers/src/I2C.o: ../user_src/drivers/src/I2C.c
 	@echo Finished building: $<
 	
 
-user_src/libraries/LED_RGB.o: ../user_src/libraries/LED_RGB.c
+user_src/libraries/RGB_LED.o: ../user_src/libraries/RGB_LED.c
 	@echo Building file: $<
 	@echo Invoking: ARM/GNU C Compiler : 6.3.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\arm\arm-gnu-toolchain\bin\arm-none-eabi-gcc.exe$(QUOTE)  -x c -mthumb -D__SAME54P20A__ -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\arm\CMSIS\5.4.0\CMSIS\Core\Include" -I"../Config" -I".." -I"../examples" -I"../hal/include" -I"../hal/utils/include" -I"../hpl/cmcc" -I"../hpl/core" -I"../hpl/dmac" -I"../hpl/gclk" -I"../hpl/mclk" -I"../hpl/osc32kctrl" -I"../hpl/oscctrl" -I"../hpl/pm" -I"../hpl/port" -I"../hpl/ramecc" -I"../hpl/sercom" -I"../hpl/systick" -I"../hri" -I"../stdio_redirect" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\SAME54_DFP\1.1.134\include" -I"../user_src/drivers/include" -I"../user_src/drivers/src" -I"../user_src/libraries"  -Og -ffunction-sections -mlong-calls -g3 -Wall -mcpu=cortex-m4 -c -std=gnu99 -mfloat-abi=softfp -mfpu=fpv4-sp-d16 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

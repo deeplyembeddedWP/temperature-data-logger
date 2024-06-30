@@ -76,7 +76,7 @@ user_src\application\Data_Logger.c
 
 user_src\drivers\src\I2C.c
 
-user_src\libraries\LED_RGB.c
+user_src\libraries\RGB_LED.c
 
 user_src\libraries\TMP117.c
 
