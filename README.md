@@ -43,4 +43,50 @@ An application that does the following
 
 ## Software Architecture 
 ![software-stack](https://github.com/deeplyembeddedWP/temperature-data-logger/assets/23131959/f26e7f37-03c8-4d09-ac1a-86ac1b8c1574)
+1. **_Hardware Abstraction Layer (HAL)_**: It exposes the API's used to directly interact with the hardware while abstracting the underlying details of the controller architecture. These are usually provided as part of the vendors SDK or framework.
+2. **_Drivers_**: It uses the HAL API's to expose the features of the controller to the user while abstracting the complex intricates of the peripherals.
+3. **_Libraries_**: It uses the driver API's to interact with external devices and expose the external device functions/features to the application. 
+4. **_Subsystems_**: It uses the libraries to build functional blocks. It abstracts all the complexities providing access to simplified interface/API's to develop the bussiness logic. In certain cases, these are also termed as middleware.
+5. **_Application**: It uses the subsystems API's to build the solution that meets the requirements.
 
+### Project Structure
+```bash
+├── temperature logger
+│   ├── ...
+│   ├── hal
+│   ├── ...
+│   ├── usr_src
+│   │   ├── drivers
+│   │   	├── include
+│   │   		├── I2C.h
+│   │   	├── src
+│   │   		├── I2C.c
+│   │   ├── libraries
+│   │   	├── RGB_LED.h
+│   │   	├── RGB_LED.c
+│   │   	├── TMP117.h
+│   │   	├── TMP117.c
+│   │   ├── subsystems
+│   │   	├── packetizer
+│   │   		├── JSON_Serial.h
+│   │   		├── JSON_Serial.c
+│   │   		├── Packet.h
+│   │   	├── sys_status
+│   │   		├── Sys_Status_Led.h
+│   │   		├── Sys_Status_Led.c
+│   │   	├── power_management
+│   │   		├── Battery.h
+│   │   		├── Battery.c
+│   │   	├── sensors
+│   │   		├── Sensors_Temperature.h
+│   │   		├── Sensors_Temperature.c
+│   │   ├── application
+│   │   	├── Data_Logger.h
+│   │   	├── Data_Logger.c
+├── ...
+├── main.c
+├── ...
+```
+The above project structure corrolates to the described software architecture with all the user implemented source files constituted within the **_usr_src_** directory.
+
+## Data Logging Protocol

@@ -14,9 +14,11 @@
 #define SENSORS_TEMPERATURE_VARIANCE_PERCENTAGE_MAX 5
 
 /*
-populate the structure for the intended configuration
+populate for the intended configuration (usually done by the application)
 */
-static TMP117_configuration_register_t _configuration = {};
+#define SENSORS_TEMPERATURE_DEFAULT_CONFIGURATION 0x0220
+static TMP117_configuration_register_t _configuration = {
+    .value = SENSORS_TEMPERATURE_DEFAULT_CONFIGURATION};
 
 /*
 structure to hold the state of the sensor
@@ -101,18 +103,16 @@ void Sensors_Temperature_initialize(void) {
  *
  * @return status
  */
-int Sensors_Temperature_subsys_status_get(void) { 
-	return _this.status; 
-}
+int Sensors_Temperature_subsys_status_get(void) { return _this.status; }
 
 /**
  * @brief updates the value to be applied for configuration.
- * 
+ *
  * WARNING: for the new value to take effect, a system reset must be
  * invoked. Run-time configuration is not supported as of now.
  */
-void Sensors_Temperature_configuration_value_update(uint16_t value){
-	_configuration.value = value;
+void Sensors_Temperature_configuration_value_update(uint16_t value) {
+  _configuration.value = value;
 }
 
 /**

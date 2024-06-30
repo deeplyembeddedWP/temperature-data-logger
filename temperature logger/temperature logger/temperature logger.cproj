@@ -889,10 +889,10 @@
     <Compile Include="user_src\subsystems\packetizers\Packet.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="user_src\subsystems\power_management\battery.c">
+    <Compile Include="user_src\subsystems\power_management\Battery.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="user_src\subsystems\power_management\battery.h">
+    <Compile Include="user_src\subsystems\power_management\Battery.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_src\subsystems\sensors\Sensors_Temperature.c">
@@ -937,12 +937,10 @@
     <Folder Include="user_src" />
     <Folder Include="stdio_redirect\" />
     <Folder Include="stdio_redirect\gcc\" />
-    <Folder Include="user_src\docs\images" />
     <Folder Include="user_src\drivers" />
     <Folder Include="user_src\drivers\include" />
     <Folder Include="user_src\drivers\src" />
     <Folder Include="user_src\libraries" />
-    <Folder Include="user_src\docs" />
     <Folder Include="user_src\application" />
     <Folder Include="user_src\subsystems" />
     <Folder Include="user_src\subsystems\packetizers\" />
@@ -964,9 +962,6 @@
       <SubType>compile</SubType>
     </None>
     <None Include="hal\documentation\usart_sync.rst">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="user_src\docs\images\sensor-node-hlbd.png">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>

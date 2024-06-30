@@ -1,5 +1,5 @@
 /*
- * battery.h
+ * Battery.h
  *
  * Created: 29/06/2024 6:26:42 pm
  *  Author: Vinay Divakar
