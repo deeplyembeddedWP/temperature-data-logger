@@ -92,8 +92,8 @@ An application that does the following
 The above project structure correlates to the described software architecture with all the user-implemented source files in the **_usr_src_** directory.
 
 ## Data Logging Protocol
-The data is logged to the serial terminal using a normal JSON format. The following structure has been used to make the packet as generic as possible so it can support logging different data types. Please see _Packet.h_ in the packetizers subsystem for more details.
-Below shows an JSON example of logged packet.
+The data is logged to the serial terminal using a normal JSON format. The following structure has been used to make the packet as generic as possible to support logging different data types. Please see _Packet.h_ in the packetizers subsystem for more details.
+Below is a JSON example of the logged packet.
 ```bash
 {
   "Type": "sensor",
