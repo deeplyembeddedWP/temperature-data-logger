@@ -105,3 +105,38 @@ Below shows an JSON example of logged packet.
 }
 ```
 **_NOTE_**: Timestamps aren't supported as of now, but can be extended to do so in the future with an RTC. As of now, errors field is unused and just being used as a place-holder for future use.
+
+## Factors for Customazing the Application
+Below describes some factors to consider when customizing the application for changing requirements.
+
+The configuration register in the data logger has been configured as below by default. At present this is a hardcorded configuration and cannot be changed via any external stimuli. The below also describes the reasoning for this configuration in the application _Data_Logger.c_ file.
+```bash
+// Configure for the following:
+// AVG[1:0] = 01 i.e. 8 Averaged conversions, total active conversion time = 8
+// x 15.5ms = 124ms, MOD[1:0] = 11 i.e. One-shot conversion. sensors remains
+// shutdown until data is read before starting the next conversion. This seems
+// like the best possible setting to meet low power requirements since sensor
+// will remain shutdown until the data has been read from temperature register.
+// So if we perform logging every second, the sensor will remain shutdown for
+// 80% of the logging interval. Reducing the logging interval will reduce the
+// sensor's shutdown duration which will increase the power consumption due to
+// more frequent conversions, minimizing battery life.
+static TMP117_configuration_register_t _configuration = {
+	.configuration_feilds.avg = 0x01,
+	.configuration_feilds.mod = 0x03,
+};
+```
+Below describes some things to consider.
+```bash
+  // Use a periodic timer to invoke Data_Logger_measurement_log()
+  // and Data_Logger_indicate_sensor_status() at the nessesary intervals. Invoke
+  // Data_Logger_indicate_sensor_status() atleast 2x faster than
+  // Data_Logger_measurement_log() to ensure intermittent faults are caught. The
+  // timer interval for Data_Logger_measurement_log() depends on the configured
+  // number of conversion cycles and conversion mode. For e.g. a single
+  // conversion cycle takes 15.5ms and if sensor is configured to take an average
+  // of 8 measurements, then the conversion time shall be 15.5 x 8 = 124ms,
+  // hence Data_Logger_measurement_log() must be invoked with a minimum interval
+  // of 125ms hoping the data to be ready for measurement. see the TMP117 datasheet
+  // for more details
+``` 

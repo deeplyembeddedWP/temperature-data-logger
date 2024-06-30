@@ -27,8 +27,9 @@ int main(void) {
   // conversion cycle take 15.5ms and if sensor is configured to take an average
   // of 8 measurements, then the conversion time shall be 15.5 x 8 = 124ms,
   // hence Data_Logger_measurement_log() must be invoked with a minimum interval
-  // of 125ms hoping the data to be ready for measurement. see the TMP117 datasheet 
-  //for more details
+  // of 125ms hoping the data to be ready for measurement. see the TMP117
+  // datasheet
+  // for more details
 
   while (1) {
     WDT_feed(); // feed to prevent it from firing

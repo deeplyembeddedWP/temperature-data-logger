@@ -13,13 +13,20 @@
 #define DATA_LOGGER_MEASUREMENT_TIME_TOTAL_MS                                  \
   (8 * SENSORS_TEMPERATURE_CONVERSION_TIME_ONE_CYCLE_MS)
 
-/*
-populate for the intended configuration & then use
-Sensors_Temperature_configuration_value_update() to apply it.
-For this to take effect, it should be done before invoking
-Sensors_Temperature_initialize()
-*/
-static TMP117_configuration_register_t _configuration = {};
+// Configure for the following:
+// AVG[1:0] = 01 i.e. 8 Averaged conversions, total active conversion time = 8
+// x 15.5ms = 124ms, MOD[1:0] = 11 i.e. One-shot conversion. sensors remains
+// shutdown until data is read before starting the next conversion. This seems
+// like the best possible setting to meet low power requirements since sensor
+// will remain shutdown until the data has been read from temperature register.
+// So if we perform logging every second, the sensor will remain shutdown for
+// 80% of the logging interval. Reducing the logging interval will reduce the
+// sensor's shutdown duration which will increase the power consumption due to
+// more frequent conversions, minimizing battery life.
+static TMP117_configuration_register_t _configuration = {
+	.configuration_feilds.avg = 0x01,
+	.configuration_feilds.mod = 0x03,
+};
 
 /**
  * @brief drives the leds based on the status input
