@@ -344,7 +344,8 @@
       <Value>../stdio_redirect</Value>
       <Value>%24(PackRepoDir)\atmel\SAME54_DFP\1.1.134\include</Value>
       <Value>../user_src/drivers/include</Value>
-      <Value>../user_src/libraries/sensors/include</Value>
+      <Value>../user_src/drivers/src</Value>
+      <Value>../user_src/libraries</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
@@ -848,16 +849,55 @@
     <Compile Include="stdio_start.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="user_src\application\Data_Logger.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\application\Data_Logger.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="user_src\drivers\include\I2C.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_src\drivers\src\I2C.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="user_src\libraries\sensors\include\TMP117.h">
+    <Compile Include="user_src\libraries\LED_RGB.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="user_src\libraries\sensors\src\TMP117.c">
+    <Compile Include="user_src\libraries\LED_RGB.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\TMP117.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\TMP117.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\packetizers\Json_Serial.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\packetizers\Json_Serial.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\packetizers\Packet.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\power_management\battery.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\power_management\battery.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\sensors\Sensors_Temperature.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\sensors\Sensors_Temperature.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\sys_status\Sys_Status_Led.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\subsystems\sys_status\Sys_Status_Led.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
@@ -895,13 +935,13 @@
     <Folder Include="user_src\drivers\include" />
     <Folder Include="user_src\drivers\src" />
     <Folder Include="user_src\libraries" />
-    <Folder Include="user_src\libraries\packetizers" />
-    <Folder Include="user_src\libraries\packetizers\include" />
-    <Folder Include="user_src\libraries\packetizers\src" />
-    <Folder Include="user_src\libraries\sensors" />
-    <Folder Include="user_src\libraries\sensors\include" />
-    <Folder Include="user_src\libraries\sensors\src" />
     <Folder Include="user_src\docs" />
+    <Folder Include="user_src\application" />
+    <Folder Include="user_src\subsystems" />
+    <Folder Include="user_src\subsystems\packetizers\" />
+    <Folder Include="user_src\subsystems\sys_status" />
+    <Folder Include="user_src\subsystems\power_management" />
+    <Folder Include="user_src\subsystems\sensors" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Device_Startup\same54p20a_flash.ld">

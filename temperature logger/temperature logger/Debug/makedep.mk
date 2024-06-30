@@ -72,7 +72,19 @@ stdio_redirect\stdio_io.c
 
 stdio_start.c
 
+user_src\application\Data_Logger.c
+
 user_src\drivers\src\I2C.c
 
-user_src\libraries\sensors\src\TMP117.c
+user_src\libraries\LED_RGB.c
+
+user_src\libraries\TMP117.c
+
+user_src\subsystems\packetizers\Json_Serial.c
+
+user_src\subsystems\power_management\battery.c
+
+user_src\subsystems\sensors\Sensors_Temperature.c
+
+user_src\subsystems\sys_status\Sys_Status_Led.c
 
