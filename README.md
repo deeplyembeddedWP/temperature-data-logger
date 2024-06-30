@@ -16,10 +16,10 @@ An application that does the following
 | **Temperature range(°C)** | -50°C to 150°C |
 | **Accuracy(°C)** | +/-0.3°C |
 | **Resolution(°C)** | 0.008°C |
-| **Host Interface** | USB, baudrate:115200bps, parity:none, data:8 bit, stop bits:1, flow control:none |
-| **Data logging interval, seconds(s)** | DEFAULT:1s, MIN:100s MAX:86400s(24 hours) |
+| **Host Interface** | USB, baudrate:115200 bps, parity:none, data:8 bit, stop bits:1, flow control:none |
+| **Data logging interval, seconds(s)** | DEFAULT:1s, MIN: 500ms MAX: 86400s(24 hours) |
 | **Logging Protocol** | Custom protocol to provide seamless integration with external hosts |
-| **LED status** | GREEN: OPERATING NORMALLY, RED: SENSOR FAULT, YELLOW: SENSOR ERRATIC DATA |
+| **LED status** | GREEN: OPERATING NORMALLY, RED: SENSOR FAULT, YELLOW: SENSOR ERRATIC READING |
 
 **NOTE**: Increasing the logging frequency shall decrease battery life, default is set to once per second to maximize battery life.
 
@@ -38,5 +38,7 @@ An application that does the following
 - To support more than 4 sensors, we could use an i2c multiplexer. However, this will increase the BOM cost and hence, for MVP we shall stick to the above specs.
 - Since no precedence was mentioned for the occurrence of more than one fault, by default SENSOR FAULT shall always take precedence over other faults.
 - Since power requirements were not specified, we assume this would be a battery-operated device and hence shall apply the best practices to maximize battery life while providing optimal performance.
-- Since the logging interval wasn't specified, we shall assume a min of 100 ms to a max of 24 hrs. Since we are using a wired serial port to log data and are not limited by data costs, we shall log data in JSON format.
-- This will make integration easier for external hosts considering there's massive support for processing JSON data. 
+- Since the logging interval wasn't specified, we shall assume a min of 500 ms to a max of 24 hrs. Since we are using a wired serial port to log data and are not limited by data costs, we shall log data in JSON format.
+- This will make integration easier for external hosts considering there's massive support for processing JSON data.
+
+## Software Architecture 
