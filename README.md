@@ -140,3 +140,51 @@ Below describes some things to consider.
   // of 125ms hoping the data to be ready for measurement. see the TMP117 datasheet
   // for more details
 ``` 
+## Test Framework
+To test the application, we shall use an exisitng framework such as CMOCK to automate tests. Using CMOCK we mock the internals of the below functions for validation and hopefully getting us maximum coverage.
+```bash
+int I2C_initialize(void)
+int TMP117_configure(int16_t slave_addr, uint16_t config_value)
+int TMP117_data_ready_status_get(int16_t slave_addr)
+bool TMP117_device_id_status_get(int16_t slave_addr)
+float TMP117_temperature_celcius_get(int16_t slave_addr)
+void RGB_LED_drive(enum RGB_LED_color_t color)
+void Json_Serial_measurement_log(struct packet_t *packet)
+float Sensors_Temperature_reading_get(void)
+void Data_Logger_measurement_log(void)
+```
+### Test Cases
+Test cases can be developed for to test the behaviour of to system ensuring it meets the expected results. Below are few examples:
+
+#### Test Case-1
+LED indicating normal operation
+-Input: 
+	- Setup a data logger with all the 4 channels connected to fully functional temperature sensors.
+	- An accurate reference temperature sensor.
+-Procedure:
+    - Power ON the data logger.
+    - Connect the data logger to a serial terminal to start logging. 
+	- Compare the readings of the data logger with reference and ensure its valid.
+	- If readings are valid, ensure the LED is illuminated with color GREEN.
+-Expected Result: The LED shall illuminate GREEN indicating normal operation.
+-Actual Result: PASS
+
+#### Test Case-2
+LED indicating sensor fault
+- Input: 
+	- Setup a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
+	- A faulty sensor must be unresponsive/broken
+- Procedure: 
+	- Power ON the data logger and wait a second for visual feedback.
+-Expected Result: The LED shall illuminate RED indicating a faulty sensor.
+-Actual Result: PASS
+
+#### Test Case-3
+LED indicating erratic sensor readings
+- Input: 
+	- Setup a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
+	- A faulty sensor must be responsive generating inaccurate/bad readings
+- Procedure: 
+	- Power ON the data logger and wait a second for visual feedback.
+-Expected Result: The LED shall illuminate YELLOW indicating erratic sensor readings.
+-Actual Result: PASS
