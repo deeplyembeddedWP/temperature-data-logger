@@ -59,8 +59,10 @@ An application that does the following
 │   │   ├── drivers
 │   │   	├── include
 │   │   		├── I2C.h
+│   │   		├── WDT.h
 │   │   	├── src
 │   │   		├── I2C.c
+│   │   		├── WDT.c
 │   │   ├── libraries
 │   │   	├── RGB_LED.h
 │   │   	├── RGB_LED.c

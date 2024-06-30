@@ -70,7 +70,7 @@ void Data_Logger_indicate_sensor_status(void) {
 /**
  * @brief indicates the system status
  */
-void Data_Logger_measurement_get(void) {
+void Data_Logger_measurement_log(void) {
   struct packet_t packet = {
       .type = "measurement",
       .param.name = "temperature",

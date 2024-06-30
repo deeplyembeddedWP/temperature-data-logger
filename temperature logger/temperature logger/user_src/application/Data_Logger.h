@@ -15,7 +15,7 @@
 #include "Json_Serial.h"
 
 void Data_Logger_initalize(void);
-void Data_Logger_measurement_get(void);
+void Data_Logger_measurement_log(void);
 void Data_Logger_indicate_sensor_status(void);
 
 #endif /* DATA_LOGGER_H_ */
