@@ -346,6 +346,10 @@
       <Value>../user_src/drivers/include</Value>
       <Value>../user_src/drivers/src</Value>
       <Value>../user_src/libraries</Value>
+      <Value>../user_src/application/include</Value>
+      <Value>../user_src/application/src</Value>
+      <Value>../user_src/subsystems/sensors</Value>
+      <Value>../user_src/subsystems/sys_status</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize debugging experience (-Og)</armgcc.compiler.optimization.level>
@@ -871,6 +875,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_src\libraries\TMP117.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\TMP117_register.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="user_src\subsystems\packetizers\Json_Serial.c">

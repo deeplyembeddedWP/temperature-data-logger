@@ -106,6 +106,16 @@ int Sensors_Temperature_subsys_status_get(void) {
 }
 
 /**
+ * @brief updates the value to be applied for configuration.
+ * 
+ * WARNING: for the new value to take effect, a system reset must be
+ * invoked. Run-time configuration is not supported as of now.
+ */
+void Sensors_Temperature_configuration_value_update(uint16_t value){
+	_configuration.value = value;
+}
+
+/**
  * @brief iterates the sensor list, grabs measurements from each sensor
  * if available, computes and returns the average of all successful readings.
  * retrieves average temperature reading from all the sensors.

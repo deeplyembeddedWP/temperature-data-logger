@@ -12,6 +12,10 @@
 
 #include "TMP117.h"
 #include "hal_delay.h"
+#include "TMP117_register.h"
+
+// single cycle takes 15.5 ms, on a safer side, use 20 ms
+#define SENSORS_TEMPERATURE_CONVERSION_TIME_ONE_CYCLE_MS 20
 
 /*
 sensor operating states
@@ -26,5 +30,6 @@ enum sensors_status_t {
 void Sensors_Temperature_initialize(void);
 float Sensors_Temperature_reading_get(void);
 int Sensors_Temperature_subsys_status_get(void);
+void Sensors_Temperature_configuration_value_update(uint16_t value);
 
 #endif /* SENSORS_TEMPERATURE_H_ */
