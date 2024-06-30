@@ -18,7 +18,7 @@
 void Json_Serial_measurement_log(struct packet_t *packet) {
   ASSERT(packet);
   printf("{\"Type\":\"%s\","
-         "\"%s\":{\"value\":%.4f,\"timestamp\":\"%lu\",\"error\":%d},"
+         "\"%s\":{\"value\":\"%.4f\",\"timestamp\":\"%lu\",\"error\":\"%d\"},"
          "}\r\n",
          packet->type, packet->param.name, packet->param.value.value_float,
          packet->param.timestamp, packet->param.error);

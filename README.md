@@ -92,3 +92,16 @@ An application that does the following
 The above project structure correlates to the described software architecture with all the user-implemented source files in the **_usr_src_** directory.
 
 ## Data Logging Protocol
+The data is logged to the serial terminal using a normal JSON format. The following structure has been used to make the packet as generic as possible so it can support logging different data types. Please see _Packet.h_ in the packetizers subsystem for more details.
+Below shows an JSON example of logged packet.
+```bash
+{
+  "Type": "sensor",
+  "temperature(C)": {
+    "value": "17.6748",
+    "timestamp": "1719726801",
+    "error": "0"
+  }
+}
+```
+**_NOTE_**: Timestamps aren't supported as of now, but can be extended to do so in the future with an RTC. As of now, errors field is unused and just being used as a place-holder for future use.

@@ -69,11 +69,13 @@ void Data_Logger_indicate_sensor_status(void) {
 
 /**
  * @brief indicates the system status
+ * NOTE: timestamps aren't supported as of now, but can be extended to do so
+ * with an RTC.
  */
 void Data_Logger_measurement_log(void) {
   struct packet_t packet = {
-      .type = "measurement",
-      .param.name = "temperature",
+      .type = "sensor",
+      .param.name = "temperature(C)",
       .param.value.value_float = Sensors_Temperature_reading_get(),
   };
 
