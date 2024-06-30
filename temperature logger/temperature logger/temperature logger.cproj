@@ -867,6 +867,12 @@
     <Compile Include="user_src\libraries\LED_RGB.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="user_src\libraries\RGB_LED.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="user_src\libraries\RGB_LED.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="user_src\libraries\TMP117.c">
       <SubType>compile</SubType>
     </Compile>
