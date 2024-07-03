@@ -33,7 +33,7 @@ static TMP117_configuration_register_t _configuration = {
  *
  * @param[in] status system status input
  */
-static void _sensor_status_led_drive(enum sensors_status_t status) {
+static void _status_led_drive(enum sensors_status_t status) {
   switch (status) {
   case SENSORS_TEMPERATURE_OK:
     Sys_Status_Led_indicate(RGB_LED_GREEN);
@@ -59,7 +59,7 @@ static void _sensor_status_led_drive(enum sensors_status_t status) {
  * @brief initializes the data logger
  */
 void Data_Logger_initalize(void) {
-  _sensor_status_led_drive(RGB_LED_GREEN);
+  _status_led_drive(RGB_LED_GREEN);
   Sensors_Temperature_configuration_value_update(_configuration.value);
   Sensors_Temperature_initialize();
   // give some time so the first conversion shall be completed before kicking
@@ -71,7 +71,7 @@ void Data_Logger_initalize(void) {
  * @brief indicates the system status
  */
 void Data_Logger_indicate_sensor_status(void) {
-  _sensor_status_led_drive(Sensors_Temperature_subsys_status_get());
+  _status_led_drive(Sensors_Temperature_subsys_status_get());
 }
 
 /**
