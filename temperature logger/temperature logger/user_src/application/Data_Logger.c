@@ -75,7 +75,7 @@ void Data_Logger_indicate_sensor_status(void) {
 }
 
 /**
- * @brief indicates the system status
+ * @brief runs sensor task and logs the results
  * NOTE: timestamps aren't supported as of now, but can be extended to do so
  * with an RTC.
  */
