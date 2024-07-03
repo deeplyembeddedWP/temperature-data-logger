@@ -104,20 +104,20 @@ Below is a JSON example of the logged packet.
   }
 }
 ```
-**_NOTE_**: Timestamps aren't supported as of now, but can be extended to do so in the future with an RTC. As of now, errors field is unused and just being used as a place-holder for future use.
+**_NOTE_**: Timestamps aren't supported as of now, but can be extended to do so in the future with an RTC. As of now, the errors field is unused and just being used as a placeholder for future use.
 
-## Factors for Customazing the Application
-Below describes some factors to consider when customizing the application for changing requirements.
+## Factors for Customizing the Application
+Below are some factors to consider when customizing the application for changing requirements.
 
-The configuration register in the data logger has been configured as below by default. At present this is a hardcorded configuration and cannot be changed via any external stimuli. The below also describes the reasoning for this configuration in the application _Data_Logger.c_ file.
+The configuration register in the data logger has been configured as below by default. At present, this is a hardcoded configuration and cannot be changed via any external stimuli. The below also describes the reasoning for this configuration in the application _Data_Logger.c_ file.
 ```bash
 // Configure for the following:
 // AVG[1:0] = 01 i.e. 8 Averaged conversions, total active conversion time = 8
 // x 15.5ms = 124ms, MOD[1:0] = 11 i.e. One-shot conversion. sensors remains
 // shutdown until data is read before starting the next conversion. This seems
-// like the best possible setting to meet low power requirements since sensor
-// will remain shutdown until the data has been read from temperature register.
-// So if we perform logging every second, the sensor will remain shutdown for
+// like the best possible setting to meet low power requirements since the sensor
+// will remain shut down until the data has been read from the temperature register.
+// So if we perform logging every second, the sensor will remain shut down for
 // 80% of the logging interval. Reducing the logging interval will reduce the
 // sensor's shutdown duration which will increase the power consumption due to
 // more frequent conversions, minimizing battery life.
@@ -126,22 +126,21 @@ static TMP117_configuration_register_t _configuration = {
 	.configuration_feilds.mod = 0x03,
 };
 ```
-Below describes some things to consider.
 ```bash
   // Use a periodic timer to invoke Data_Logger_measurement_log()
   // and Data_Logger_indicate_sensor_status() at the nessesary intervals. Invoke
-  // Data_Logger_indicate_sensor_status() atleast 2x faster than
+  // Data_Logger_indicate_sensor_status() at least 2x faster than
   // Data_Logger_measurement_log() to ensure intermittent faults are caught. The
   // timer interval for Data_Logger_measurement_log() depends on the configured
-  // number of conversion cycles and conversion mode. For e.g. a single
-  // conversion cycle takes 15.5ms and if sensor is configured to take an average
+  // number of conversion cycles and conversion mode. E.g. a single
+  // conversion cycle takes 15.5ms and if the sensor is configured to take an average
   // of 8 measurements, then the conversion time shall be 15.5 x 8 = 124ms,
-  // hence Data_Logger_measurement_log() must be invoked with a minimum interval
+  //Hence Data_Logger_measurement_log() must be invoked with a minimum interval
   // of 125ms hoping the data to be ready for measurement. see the TMP117 datasheet
   // for more details
 ``` 
 ## Test Framework
-To test the application, we shall use an exisitng framework such as CMOCK to automate tests. Using CMOCK we mock the internals of the below functions for validation and hopefully getting us maximum coverage.
+To test the application, we shall use an existing framework such as CMOCK to automate tests. Using CMOCK we mock the internals of the below functions for validation and hopefully get us maximum coverage.
 ```bash
 int I2C_initialize(void)
 int TMP117_configure(int16_t slave_addr, uint16_t config_value)
@@ -154,37 +153,37 @@ float Sensors_Temperature_reading_get(void)
 void Data_Logger_measurement_log(void)
 ```
 ### Test Cases
-Test cases can be developed for to test the behaviour of to system ensuring it meets the expected results. Below are few examples:
+Test cases can be developed to test the behavior of to system ensuring it meets the expected results. Below are a few examples:
 
 #### Test Case-1
 LED indicating normal operation
--Input: 
-	- Setup a data logger with all the 4 channels connected to fully functional temperature sensors.
-	- An accurate reference temperature sensor.
--Procedure:
-    - Power ON the data logger.
-    - Connect the data logger to a serial terminal to start logging. 
-	- Compare the readings of the data logger with reference and ensure its valid.
-	- If readings are valid, ensure the LED is illuminated with color GREEN.
--Expected Result: The LED shall illuminate GREEN indicating normal operation.
--Actual Result: PASS
+- **Input**:
+  	- Set up a data logger with all 4 channels connected to fully functional temperature sensors.
+  	- An accurate reference temperature sensor.
+- **Procedure**:
+  	- Power ON the data logger.
+  	- Connect the data logger to a serial terminal to start logging.
+  	- Compare the readings of the data logger with reference and ensure it is valid.
+  	- If readings are valid, ensure the LED is illuminated with the color GREEN.
+- **Expected Result**: The LED shall illuminate GREEN indicating normal operation.
+- **Actual Result**: PASS
 
 #### Test Case-2
 LED indicating sensor fault
-- Input: 
-	- Setup a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
+- **Input**: 
+	- Set up a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
 	- A faulty sensor must be unresponsive/broken
-- Procedure: 
+- **Procedure**: 
 	- Power ON the data logger and wait a second for visual feedback.
--Expected Result: The LED shall illuminate RED indicating a faulty sensor.
--Actual Result: PASS
+- **Expected Result**: The LED shall illuminate RED indicating a faulty sensor.
+- **Actual Result**: PASS
 
 #### Test Case-3
 LED indicating erratic sensor readings
-- Input: 
-	- Setup a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
+- **Input**: 
+	- Set up a data logger with all 3 channels connected to fully functional temperature sensors while one with a faulty sensor.
 	- A faulty sensor must be responsive generating inaccurate/bad readings
-- Procedure: 
+- **Procedure**: 
 	- Power ON the data logger and wait a second for visual feedback.
--Expected Result: The LED shall illuminate YELLOW indicating erratic sensor readings.
--Actual Result: PASS
+- **Expected Result**: The LED shall illuminate YELLOW indicating erratic sensor readings.
+- **Actual Result**: PASS
