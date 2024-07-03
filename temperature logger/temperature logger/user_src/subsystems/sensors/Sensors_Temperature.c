@@ -8,10 +8,11 @@
  */
 
 #include "Sensors_Temperature.h"
+#include <math.h>
 
 // max number of channels supported
 #define SENSORS_TEMPERATURE_CHANNELS_NUM_MAX 4
-#define SENSORS_TEMPERATURE_VARIANCE_PERCENTAGE_MAX 5
+#define SENSORS_TEMPERATURE_STANDARD_DEVIATION_MAX 1.0f
 
 /*
 populate for the intended configuration (usually done by the application)
@@ -37,6 +38,7 @@ static struct sensors_temperature_context_t {
       sensors[SENSORS_TEMPERATURE_CHANNELS_NUM_MAX]; // holds data unique to
                                                      // each sensor
   enum sensors_status_t status; // indicates the overall health of the sensors
+  float temerature_average;     // holds average temperature of all the sensors
 } _this = {
     .sensors[0].address = TMP117_ADDRESS_0,
     .sensors[1].address = TMP117_ADDRESS_1,
@@ -79,14 +81,27 @@ static int _configure(void) {
 }
 
 /**
- * @brief calculates variance using the current measurements and
- * checks how spread out the measurements of each sensor is from the mean.
-
- * @return +/- percentage of spread
+ * @brief calculates standard deviation using the current measurements
+ *
+ * @return standard deviation from the mean
  */
-static int _temperature_variance_check(void) {
-  // TODO: some math here, pretty straightforward
-  return 0;
+static float _temperature_standard_deviation_get(void) {
+  float sensors[SENSORS_TEMPERATURE_CHANNELS_NUM_MAX] = {};
+  float value = 0.0;
+  for (size_t i = 0; i < SENSORS_TEMPERATURE_CHANNELS_NUM_MAX; i++) {
+    // calculate the difference between the sensors measurements and the mean
+    sensors[i] = _this.sensors[i].temperature - _this.temerature_average;
+    // square the differences to make all positives, so they don't cancel out
+    // each other to zero.
+    sensors[i] = (sensors[i] * sensors[i]);
+    // sum of square of all differences
+    value += sensors[i];
+  }
+
+  // now calculate the variance
+  value = (value / SENSORS_TEMPERATURE_CHANNELS_NUM_MAX);
+
+  return sqrt(value); // return the standard deviation
 }
 
 /**
@@ -155,13 +170,21 @@ float Sensors_Temperature_reading_get(void) {
     }
   }
 
-  // calculate variance and update status if out of tolerance band
-  _temperature_variance_check();
-
   // compute and return the average
   for (size_t i = 0; i < SENSORS_TEMPERATURE_CHANNELS_NUM_MAX; i++) {
     value += _this.sensors[i].temperature;
   }
 
-  return (value / SENSORS_TEMPERATURE_CHANNELS_NUM_MAX);
+  _this.temerature_average = value / SENSORS_TEMPERATURE_CHANNELS_NUM_MAX;
+
+  if (_this.status ==
+      SENSORS_TEMPERATURE_OK) { // if no faults, check for unusual readings
+    float cv =
+        (_temperature_standard_deviation_get() / _this.temerature_average);
+    _this.status = cv < SENSORS_TEMPERATURE_STANDARD_DEVIATION_MAX
+                       ? _this.status
+                       : SENSORS_TEMPERATURE_ERRATIC;
+  }
+
+  return _this.temerature_average;
 }
