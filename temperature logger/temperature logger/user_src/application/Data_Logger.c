@@ -83,7 +83,7 @@ void Data_Logger_measurement_log(void) {
   struct packet_t packet = {
       .type = "sensor",
       .param.name = "temperature(C)",
-      .param.value.value_float = Sensors_Temperature_reading_get(),
+      .param.value.value_float = Sensors_Temperature_measurement_task_run(),
   };
 
   // log the packet to the serial terminal/port

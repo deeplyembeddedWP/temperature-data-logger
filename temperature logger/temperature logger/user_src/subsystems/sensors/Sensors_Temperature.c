@@ -137,7 +137,7 @@ void Sensors_Temperature_configuration_value_update(uint16_t value) {
  *
  * @return average temperature reading, 0.0 if none was a success
  */
-float Sensors_Temperature_reading_get(void) {
+float Sensors_Temperature_measurement_task_run(void) {
   int status = 0;
   float value = 0.0;
 

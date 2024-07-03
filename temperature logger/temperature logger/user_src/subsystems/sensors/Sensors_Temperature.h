@@ -28,7 +28,7 @@ enum sensors_status_t {
 };
 
 void Sensors_Temperature_initialize(void);
-float Sensors_Temperature_reading_get(void);
+float Sensors_Temperature_measurement_task_run(void);
 int Sensors_Temperature_subsys_status_get(void);
 void Sensors_Temperature_configuration_value_update(uint16_t value);
 
